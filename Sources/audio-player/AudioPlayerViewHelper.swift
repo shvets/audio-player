@@ -200,13 +200,13 @@ open class AudioPlayerViewHelper {
 
   public func nextTrack() {
     if navigator.next(), let url = navigator.selection.bookItem.url {
-      player.reload(mediaSource: MediaSource(url: url, name: navigator.selection.bookItem.name))
+      player.reload(url: url)
     }
   }
 
   public func previousTrack() {
     if navigator.previous(), let url = navigator.selection.bookItem.url {
-      player.reload(mediaSource: MediaSource(url: url, name: navigator.selection.bookItem.name))
+      player.reload(url: url)
     }
   }
 

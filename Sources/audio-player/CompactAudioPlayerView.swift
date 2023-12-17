@@ -72,9 +72,7 @@ public struct CompactAudioPlayerView: View {
     navigator.selection = selection
 
     if let url = selection.bookItem.url {
-      let mediaSource = MediaSource(url: url, name: selection.bookItem.name)
-
-      player.update(mediaSource: mediaSource, startTime: startTime)
+      player.update(url: url, startTime: startTime)
     }
 
     expanded = !expanded
