@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "audio-player",
+    version: "1.0.3",
     defaultLocalization: "en",
     platforms: [
         .macOS(.v13),
