@@ -15,14 +15,14 @@ public struct AudioPlayerView: View {
     )
   }
 
-  var player: MediaPlayer
+  @ObservedObject var player: MediaPlayer
   @Binding var navigationPath: NavigationPath
-  var navigator: AudioPlayerNavigator
+  @ObservedObject var navigator: AudioPlayerNavigator
   var book: MediaItem
   var playImmediately: Bool
   @Binding var startTime: Double
 
-  public init(player: MediaPlayer, navigationPath: Binding<NavigationPath>,
+  public init(@ObservedObject player: MediaPlayer, navigationPath: Binding<NavigationPath>,
               navigator: AudioPlayerNavigator, book: MediaItem, playImmediately: Bool,
               startTime: Binding<Double>) {
     self.player = player

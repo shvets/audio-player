@@ -7,11 +7,11 @@ public struct AudioPlayerListener: ViewModifier {
     AudioPlayerViewHelper(player: player, navigator: navigator)
   }
 
-  var player: MediaPlayer
+  @ObservedObject var player: MediaPlayer
   var navigator: AudioPlayerNavigator
   var size: CGSize
 
-  public init(player: MediaPlayer, navigator: AudioPlayerNavigator, size: CGSize) {
+  public init(@ObservedObject player: MediaPlayer, navigator: AudioPlayerNavigator, size: CGSize) {
     self.player = player
     self.navigator = navigator
     self.size = size
