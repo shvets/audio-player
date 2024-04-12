@@ -6,7 +6,7 @@ open class BookSelection: ObservableObject {
   @Published public var items: [AudioBookItem] = []
   @Published public var bookItem = AudioBookItem(name: "")
 
-  var audioStorage: AudioStorage<AudioInfo>
+  public var audioStorage: AudioStorage<AudioInfo>
 
   public init(audioStorage: AudioStorage<AudioInfo>) {
     self.audioStorage = audioStorage
