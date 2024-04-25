@@ -98,7 +98,6 @@ struct AudioPlayerView_Previews: PreviewProvider {
   static var previews: some View {
     AudioPlayerView(
         player: MediaPlayer(),
-        navigationPath: Binding.constant(NavigationPath()),
         navigator: AudioPlayerNavigator(),
         book: MediaItem(name: "name"),
         playImmediately: false,
