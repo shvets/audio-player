@@ -2,7 +2,7 @@ import Foundation
 import common_defs
 
 public class AudioInfo: Codable {
-  var book: MediaItem?
+  var mediaItem: MediaItem?
   var currentBookItem: AudioBookItem?
   var trackId: Int?
   var audioPosition: Double?
@@ -14,8 +14,8 @@ public class AudioInfo: Codable {
 //    case audioPosition
 //  }
 
-  public init(book: MediaItem? = nil, currentBookItem: AudioBookItem? = nil, trackId: Int? = nil, audioPosition: Double? = nil) {
-    self.book = book
+  public init(mediaItem: MediaItem? = nil, currentBookItem: AudioBookItem? = nil, trackId: Int? = nil, audioPosition: Double? = nil) {
+    self.mediaItem = mediaItem
     self.currentBookItem = currentBookItem
     self.trackId = trackId
     self.audioPosition = audioPosition

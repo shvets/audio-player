@@ -5,7 +5,7 @@ public class AudioStorage<T: AudioInfo>: UserDefaultsStorage<T> {
   var settingsCreator: () -> T = { AudioInfo() as! T }
 
   public var savedBook: MediaItem? {
-    try? load()?.book
+    try? load()?.mediaItem
   }
 
   public var savedCurrentBookItem: AudioBookItem? {
@@ -42,11 +42,11 @@ public class AudioStorage<T: AudioInfo>: UserDefaultsStorage<T> {
     }
   }
 
-  public func saveBook(_ book: MediaItem) {
-    print("save book: \(book.name)")
+  public func saveBook(_ mediaItem: MediaItem) {
+    print("save book: \(mediaItem.name)")
 
     save { settings in
-      settings.book = book
+      settings.mediaItem = mediaItem
 //      settings.trackId = 0
 //      settings.audioPosition = 0
     }

@@ -17,17 +17,17 @@ public struct AudioPlayerView: View {
 
   @ObservedObject var player: MediaPlayer
   @ObservedObject var navigator: AudioPlayerNavigator
-  var book: MediaItem
+  var mediaItem: MediaItem
   var playImmediately: Bool
-  @Binding var startTime: Double
+  var startTime: Double
 
-  public init(player: MediaPlayer, navigator: AudioPlayerNavigator, book: MediaItem, playImmediately: Bool,
-              startTime: Binding<Double>) {
+  public init(player: MediaPlayer, navigator: AudioPlayerNavigator, mediaItem: MediaItem, playImmediately: Bool,
+              startTime: Double) {
     self.player = player
     self.navigator = navigator
-    self.book = book
+    self.mediaItem = mediaItem
     self.playImmediately = playImmediately
-    self._startTime = startTime
+    self.startTime = startTime
   }
 
   public var body: some View {
@@ -36,7 +36,7 @@ public struct AudioPlayerView: View {
         playerBody()
       }
         //.background(Color.gray)
-        .navigationTitle(book.name)
+        .navigationTitle(mediaItem.name)
         .modifier(AudioPlayerListener(player: player, navigator: navigator, size: proxy.size))
     }
   }
@@ -44,7 +44,7 @@ public struct AudioPlayerView: View {
   @ViewBuilder
   func playerBody() -> some View {
     VStack {
-      if let imageName = book.imageName, let url = URL(string: imageName) {
+      if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
         DetailsImage(url: url)
           .padding(5)
       }
@@ -99,9 +99,9 @@ struct AudioPlayerView_Previews: PreviewProvider {
     AudioPlayerView(
         player: MediaPlayer(),
         navigator: AudioPlayerNavigator(),
-        book: MediaItem(name: "name"),
+        mediaItem: MediaItem(name: "name"),
         playImmediately: false,
-        startTime: Binding.constant(.zero)
+        startTime: .zero
     )
   }
 }
