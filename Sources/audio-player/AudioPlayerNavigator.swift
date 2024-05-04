@@ -6,7 +6,7 @@ public class AudioPlayerNavigator: ObservableObject, PlayerNavigator {
 
   @Published public var selection: BookSelection
 
-  public init(selection: BookSelection = BookSelection(audioStorage: AudioStorage("audio-player"))) {
+  public init(selection: BookSelection) {
     self.selection = selection
   }
 

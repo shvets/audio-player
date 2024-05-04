@@ -50,8 +50,8 @@ struct DetailsImage: View {
   }
 }
 
-struct DetailsImage_Previews: PreviewProvider {
-  static var previews: some View {
-    DetailsImage(url: URL(string: "someimage")!)
-  }
-}
+//struct DetailsImage_Previews: PreviewProvider {
+//  static var previews: some View {
+//    DetailsImage(url: URL(string: "someimage")!)
+//  }
+//}

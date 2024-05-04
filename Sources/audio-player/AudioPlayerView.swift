@@ -94,14 +94,14 @@ public struct AudioPlayerView: View {
   }
 }
 
-struct AudioPlayerView_Previews: PreviewProvider {
-  static var previews: some View {
-    AudioPlayerView(
-        player: MediaPlayer(),
-        navigator: AudioPlayerNavigator(),
-        mediaItem: MediaItem(name: "name"),
-        playImmediately: false,
-        startTime: .zero
-    )
-  }
-}
+//struct AudioPlayerView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AudioPlayerView(
+//        player: MediaPlayer(),
+//        navigator: AudioPlayerNavigator(selection: BookSelection()),
+//        mediaItem: MediaItem(name: "name"),
+//        playImmediately: false,
+//        startTime: .zero
+//    )
+//  }
+//}

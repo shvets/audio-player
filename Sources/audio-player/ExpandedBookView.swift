@@ -56,8 +56,8 @@ public struct ExpandedBookView: View {
   }
 }
 
-struct ExpandedBookView_Previews: PreviewProvider {
-  static var previews: some View {
-    ExpandedBookView(player: MediaPlayer(), navigator: AudioPlayerNavigator(), playImmediately: false)
-  }
-}
+//struct ExpandedBookView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ExpandedBookView(player: MediaPlayer(), navigator: AudioPlayerNavigator(selection: BookSelection()), playImmediately: false)
+//  }
+//}

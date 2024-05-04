@@ -79,15 +79,15 @@ public struct CompactAudioPlayerView: View {
   }
 }
 
-struct CompactAudioPlayerView_Previews: PreviewProvider {
-  static var previews: some View {
-    CompactAudioPlayerView(
-        player: MediaPlayer(),
-        navigationPath: Binding.constant(NavigationPath()),
-        navigator: AudioPlayerNavigator(),
-        selection: BookSelection(audioStorage: AudioStorage<AudioInfo>("name")),
-        playImmediately: false,
-        startTime: Binding.constant(.zero)
-    )
-  }
-}
+//struct CompactAudioPlayerView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    CompactAudioPlayerView(
+//        player: MediaPlayer(),
+//        navigationPath: Binding.constant(NavigationPath()),
+//        navigator: AudioPlayerNavigator(selection: BookSelection()),
+//        selection: BookSelection(),
+//        playImmediately: false,
+//        startTime: Binding.constant(.zero)
+//    )
+//  }
+//}
