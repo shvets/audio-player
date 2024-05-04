@@ -16,7 +16,7 @@ public class AudioPlayerNavigator: ObservableObject, PlayerNavigator {
     if index < items.count-1 {
       let nextItem = items[index+1]
 
-      selection.select(nextItem)
+      selection.select(bookItem: nextItem)
 
       return true
     }
@@ -30,7 +30,7 @@ public class AudioPlayerNavigator: ObservableObject, PlayerNavigator {
     if index > 0 {
       let previousItem = items[index-1]
 
-      selection.select(previousItem)
+      selection.select(bookItem: previousItem)
 
       return true
     }
