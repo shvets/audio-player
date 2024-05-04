@@ -6,7 +6,9 @@ open class BookSelection: ObservableObject {
   @Published public var items: [AudioBookItem] = []
   @Published public var bookItem = AudioBookItem(name: "")
 
-  open func select(_ newBookItem: AudioBookItem) {
-    bookItem = newBookItem
+  public init() {}
+
+  open func select(bookItem: AudioBookItem) {
+    self.bookItem = bookItem
   }
 }
