@@ -199,13 +199,13 @@ open class AudioPlayerViewHelper {
   }
 
   public func nextTrack() {
-    if navigator.next(), let url = navigator.selection.bookItem.url {
+    if navigator.next(), let url = navigator.selection.info.track?.url {
       player.reload(url: url)
     }
   }
 
   public func previousTrack() {
-    if navigator.previous(), let url = navigator.selection.bookItem.url {
+    if navigator.previous(), let url = navigator.selection.info.track?.url {
       player.reload(url: url)
     }
   }

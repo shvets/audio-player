@@ -49,7 +49,7 @@ public struct AudioPlayerView: View {
           .padding(5)
       }
 
-      Text(navigator.selection.bookItem.name)
+      Text(navigator.selection.info.track?.name ?? "")
         .fixedSize()
       //.frame(width: width, alignment: .center)
 

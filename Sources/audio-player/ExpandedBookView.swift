@@ -28,7 +28,7 @@ public struct ExpandedBookView: View {
 
   public var body: some View {
     Group {
-      if navigator.selection.bookItem.url != nil {
+      if navigator.selection.info.track?.url != nil {
         HStack {
           if let navigateTo = navigateTo {
             navigateTo()

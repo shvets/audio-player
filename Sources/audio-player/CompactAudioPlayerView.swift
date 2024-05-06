@@ -44,7 +44,7 @@ public struct CompactAudioPlayerView: View {
           switchView(selection: selection)
         }
         label: {
-          BookTitleView(name: title(selection.book.name), imageName: selection.book.imageName)
+          BookTitleView(name: title(selection.info.book?.name ?? ""), imageName: selection.info.book?.imageName)
         }
 
         if expanded {
@@ -52,7 +52,7 @@ public struct CompactAudioPlayerView: View {
         }
       }
           //.background(Color.gray)
-        .navigationTitle(navigator.selection.book.name)
+      .navigationTitle(navigator.selection.info.book?.name ?? "")
         .modifier(AudioPlayerListener(player: player, navigator: navigator, size: proxy.size))
     }
   }
@@ -71,7 +71,7 @@ public struct CompactAudioPlayerView: View {
   func switchView(selection: BookSelection) {
     navigator.selection = selection
 
-    if let url = selection.bookItem.url {
+    if let url = selection.info.track?.url {
       player.update(url: url, startTime: startTime)
     }
 
