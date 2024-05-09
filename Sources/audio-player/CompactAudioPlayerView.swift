@@ -18,20 +18,15 @@ public struct CompactAudioPlayerView: View {
   @State var expanded: Bool = false
 
   @ObservedObject var player: MediaPlayer
-  @Binding var navigationPath: NavigationPath
   @ObservedObject var navigator: AudioPlayerNavigator
-  @ObservedObject var selection: BookSelection
   var playImmediately: Bool
   @Binding var startTime: Double
   var navigateTo: (() -> AnyView)?
 
-  public init(@ObservedObject player: MediaPlayer, navigationPath: Binding<NavigationPath>,
-              @ObservedObject navigator: AudioPlayerNavigator, selection: BookSelection,
-              playImmediately: Bool, startTime: Binding<Double>, navigateTo: (() -> AnyView)? = nil) {
+  public init(@ObservedObject player: MediaPlayer, @ObservedObject navigator: AudioPlayerNavigator, playImmediately: Bool,
+              startTime: Binding<Double>, navigateTo: (() -> AnyView)? = nil) {
     self.player = player
-    self._navigationPath = navigationPath
     self.navigator = navigator
-    self.selection = selection
     self.playImmediately = playImmediately
     self._startTime = startTime
     self.navigateTo = navigateTo
@@ -41,10 +36,10 @@ public struct CompactAudioPlayerView: View {
     GeometryReader { proxy in
       VStack {
         Button {
-          switchView(selection: selection)
+          switchView()
         }
         label: {
-          BookTitleView(name: title(selection.info.book?.name ?? ""), imageName: selection.info.book?.imageName)
+          BookTitleView(name: title(navigator.selection.info.book?.name ?? ""), imageName: navigator.selection.info.book?.imageName)
         }
 
         if expanded {
@@ -68,10 +63,8 @@ public struct CompactAudioPlayerView: View {
     }
   }
 
-  func switchView(selection: BookSelection) {
-    navigator.selection = selection
-
-    if let url = selection.info.track?.url {
+  func switchView() {
+    if let url = navigator.selection.info.track?.url {
       player.update(url: url, startTime: startTime)
     }
 
