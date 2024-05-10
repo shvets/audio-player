@@ -79,11 +79,13 @@ public struct AudioPlayerView: View {
         audioPlayerViewHelper.navigationControlsPrimary()
         audioPlayerViewHelper.navigationControlsSecondary()
       }
-//          .onAppear {
-//            if let mediaSource = mediaSource {
-//              player.update(mediaSource: mediaSource, startTime: startTime)
-//            }
-//          }
+          .onAppear {
+            if player.url?.absoluteString != navigator.selection.info.track?.url?.absoluteString {
+              if let url = navigator.selection.info.track?.url {
+                player.update(url: url, startTime: .zero)
+              }
+            }
+          }
         .modifier(commandCenterHandler)
         .padding(5)
         .frame(height: 50)
