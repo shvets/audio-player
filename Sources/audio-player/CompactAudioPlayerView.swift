@@ -65,7 +65,9 @@ public struct CompactAudioPlayerView: View {
 
   func switchView() {
     if let url = navigator.selection.info.track?.url {
-      player.update(url: url, startTime: startTime)
+      if player.url?.absoluteString != url.absoluteString {
+        player.update(url: url, startTime: startTime)
+      }
     }
 
     expanded = !expanded
