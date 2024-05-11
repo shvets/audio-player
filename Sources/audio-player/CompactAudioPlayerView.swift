@@ -48,7 +48,7 @@ public struct CompactAudioPlayerView: View {
       }
           //.background(Color.gray)
       .navigationTitle(navigator.selection.info.book?.name ?? "")
-        .modifier(AudioPlayerListener(player: player, navigator: navigator, size: proxy.size))
+        //.modifier(AudioPlayerListener(player: player, navigator: navigator, size: proxy.size))
     }
   }
 

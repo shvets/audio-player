@@ -35,9 +35,20 @@ public struct AudioPlayerView: View {
       VStack {
         playerBody()
       }
+      .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
         //.background(Color.gray)
-        .navigationTitle(mediaItem.name)
-        .modifier(AudioPlayerListener(player: player, navigator: navigator, size: proxy.size))
+      .navigationTitle(mediaItem.name)
+        //.modifier(AudioPlayerListener(player: player, navigator: navigator))
+      .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime)) { _ in
+        audioPlayerViewHelper.nextTrack()
+      }
+      .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemPlaybackStalled)) { _ in
+        player.pause()
+        player.play()
+      }
+      .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { notification in
+        audioPlayerViewHelper.handleAVAudioSessionInterruption(notification)
+      }
     }
   }
 
