@@ -7,9 +7,9 @@ let package = Package(
     name: "audio-player",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v13),
-        .iOS(.v16),
-        .tvOS(.v16)
+        .macOS(.v14),
+        .iOS(.v17),
+        .tvOS(.v17)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -20,7 +20,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-      .package(url: "https://github.com/shvets/media-player", from: "1.0.2"),
+      .package(url: "https://github.com/shvets/media-player", from: "1.2.2"),
+      .package(url: "https://github.com/shvets/item-navigator", from: "1.0.1"),
+      .package(url: "https://github.com/shvets/navigation", from: "1.0.2"),
       .package(url: "https://github.com/shvets/common-defs", from: "1.0.5")
     ],
     targets: [
@@ -30,6 +32,8 @@ let package = Package(
             name: "audio-player",
             dependencies: [
               "media-player",
+              "item-navigator",
+              "navigation",
               "common-defs"
             ]),
         .testTarget(

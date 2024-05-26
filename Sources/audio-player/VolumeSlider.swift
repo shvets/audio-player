@@ -15,12 +15,12 @@ import media_player
 //  }
 //}
 
-struct BookNavigationSlider: View {
+struct VolumeSlider: View {
   @ObservedObject var player: MediaPlayer
 
   var body: some View {
     if let duration = player.currentItemDuration {
-#if os(iOS)
+      #if os(iOS)
       Slider(value: $player.currentTime, in: 0...duration,
           onEditingChanged: { isEditing in
             player.isEditingCurrentTime = isEditing
@@ -31,12 +31,12 @@ struct BookNavigationSlider: View {
 //              .stroke(lineWidth: 1.0)
 //              //.foregroundColor(Color.green)
 //        )
-#else
+      #else
       TvSlider(minimumValue: 1, maximumValue: 10) {
         print("in handler")
         //valueLabel.text = "\(slider.value)"
       }
-#endif
+      #endif
     }
     else {
       Spacer()
