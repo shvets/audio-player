@@ -15,10 +15,14 @@ import media_player
 //  }
 //}
 
-struct VolumeSlider: View {
+public struct VolumeSlider2: View {
   @ObservedObject var player: MediaPlayer
 
-  var body: some View {
+  public init(player: MediaPlayer) {
+    self.player = player
+  }
+
+  public var body: some View {
     if let duration = player.currentItemDuration {
       #if os(iOS)
       Slider(value: $player.currentTime, in: 0...duration,
