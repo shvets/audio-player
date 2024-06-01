@@ -15,7 +15,7 @@ import media_player
 //  }
 //}
 
-public struct VolumeSlider2: View {
+public struct VolumeSlider: View {
   @ObservedObject var player: MediaPlayer
 
   public init(player: MediaPlayer) {
