@@ -43,8 +43,8 @@ public struct CompactAudioPlayerView: View {
           HStack {
             switchModeView()
             closeView()
-            Spacer()
             navigateTo()
+            Spacer()
           }
 
           HStack {
@@ -65,11 +65,7 @@ public struct CompactAudioPlayerView: View {
           HStack {
             switchModeView()
             closeView()
-
-            if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
-              DetailsImage(url: url)
-                .frame(width: 50, height: 50)
-            }
+            navigateTo()
 
             Spacer()
 
@@ -78,6 +74,15 @@ public struct CompactAudioPlayerView: View {
               .font(.subheadline)
           }
             .padding(5)
+
+          if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
+            HStack {
+              DetailsImage(url: url)
+                .frame(width: 130, height: 130)
+
+              Spacer()
+            }
+          }
         }
       }
           //.background(Color.gray)
