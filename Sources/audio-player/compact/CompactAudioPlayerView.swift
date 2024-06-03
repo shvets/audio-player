@@ -69,9 +69,9 @@ public struct CompactAudioPlayerView: View {
 
             Spacer()
 
-            Text(title(mediaItem.name))
-              .fixedSize()
-              .font(.subheadline)
+            Text(mediaItem.name)
+              .scaledToFit()
+              .minimumScaleFactor(0.01)
           }
             .padding(5)
 
@@ -87,17 +87,6 @@ public struct CompactAudioPlayerView: View {
       }
           //.background(Color.gray)
         .navigationTitle(mediaItem.name)
-    }
-  }
-
-  func title(_ name: String) -> String {
-    let prefix = name.prefix(40)
-
-    if prefix.count == name.count {
-      return name
-    }
-    else {
-      return "\(prefix)..."
     }
   }
 
