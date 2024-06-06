@@ -8,15 +8,12 @@ public struct AudioPlayerView: View {
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
   var playImmediately: Bool
-  var currentTime: Double
 
-  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem, playImmediately: Bool,
-              currentTime: Double) {
+  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem, playImmediately: Bool) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
     self.playImmediately = playImmediately
-    self.currentTime = currentTime
   }
 
   public var body: some View {
