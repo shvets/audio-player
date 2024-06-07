@@ -37,57 +37,54 @@ public struct CompactAudioPlayerView: View {
   }
 
   public var body: some View {
-    GeometryReader { proxy in
-      VStack {
-        if expanded {
-          HStack {
-            switchModeView()
-            closeView()
-            navigateTo()
-            Spacer()
-          }
-
-          HStack {
-            PrimaryControlsView(player: player, navigator: navigator)
-            SecondaryControlsView(player: player)
-          }
-            .padding(5)
-
-          HStack {
-            Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.currentTime))")
-
-            VolumeSlider(player: player)
-
-            Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.leftTime))")
-          }
+    VStack {
+      if expanded {
+        HStack {
+          switchModeView()
+          closeView()
+          navigateTo()
+          Spacer()
         }
-        else {
+
+        HStack {
+          PrimaryControlsView(player: player, navigator: navigator)
+          SecondaryControlsView(player: player)
+        }
+          .padding(5)
+
+        HStack {
+          Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.currentTime))")
+
+          VolumeSlider(player: player)
+
+          Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.leftTime))")
+        }
+      }
+      else {
+        HStack {
+          switchModeView()
+          closeView()
+          navigateTo()
+
+          Spacer()
+
+          Text(mediaItem.name)
+            .scaledToFit()
+            .minimumScaleFactor(0.01)
+        }
+          .padding(5)
+
+        if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
           HStack {
-            switchModeView()
-            closeView()
-            navigateTo()
+            DetailsImage(url: url)
+              .frame(width: 130, height: 130)
 
             Spacer()
-
-            Text(mediaItem.name)
-              .scaledToFit()
-              .minimumScaleFactor(0.01)
-          }
-            .padding(5)
-
-          if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
-            HStack {
-              DetailsImage(url: url)
-                .frame(width: 130, height: 130)
-
-              Spacer()
-            }
           }
         }
       }
-          //.background(Color.gray)
-        .navigationTitle(mediaItem.name)
     }
+      .navigationTitle(mediaItem.name)
   }
 
   var switchModeView: () -> AnyView {
