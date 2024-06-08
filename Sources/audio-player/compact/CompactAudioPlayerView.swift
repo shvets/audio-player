@@ -8,7 +8,11 @@ public struct CompactAudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
   }
+  
+  private var imageHelper = ImageHelper()
 
+  @ObservedObject var imageSelection = ImageSelection()
+  
   @State var expanded: Bool = false
 
   var player: MediaPlayer
@@ -76,10 +80,27 @@ public struct CompactAudioPlayerView: View {
 
         if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
           HStack {
-            DetailsImage(url: url)
-              .frame(width: 130, height: 130)
+//            DetailsImage(url: url)
+//              .frame(width: 130, height: 130)
+            
+            if let image = imageSelection.image {
+              ImageView(image: image, customizeImage: imageHelper.customizeImage)
+                .frame(width: 130, height: 130)
+            }
 
             Spacer()
+          }
+        }
+      }
+    }
+    .onAppear { [self] in
+      if let imageName = mediaItem.imageName {
+        Task {
+          if let image = try await imageHelper.fetchImage(imageName: imageName) {
+            imageSelection.image = image
+          }
+          else {
+            print("Cannot load image: \(imageName)")
           }
         }
       }

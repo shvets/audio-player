@@ -5,9 +5,13 @@ import common_defs
 import item_navigator
 
 public struct AudioPlayerView: View {
-  private var audioPlayerHelper: MediaPlayerHelper {
+  private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
   }
+  
+  private var imageHelper = ImageHelper()
+
+  @ObservedObject var imageSelection = ImageSelection()
 
   @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
@@ -23,8 +27,8 @@ public struct AudioPlayerView: View {
 
   public var body: some View {
     VStack {
-      if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
-        DetailsImage(url: url)
+      if let image = imageSelection.image {
+        ImageView(image: image, customizeImage: imageHelper.customizeImage)
           .padding(5)
       }
 
@@ -35,11 +39,11 @@ public struct AudioPlayerView: View {
         VolumeSlider(player: player)
 
         HStack {
-          Text("\(audioPlayerHelper.formatTime(audioPlayerHelper.currentTime))")
+          Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.currentTime))")
 
           Spacer()
 
-          Text("\(audioPlayerHelper.formatTime(audioPlayerHelper.leftTime))")
+          Text("\(mediaPlayerHelper.formatTime(mediaPlayerHelper.leftTime))")
         }
       }
         .padding(5)
@@ -63,9 +67,21 @@ public struct AudioPlayerView: View {
 
       Spacer()
     }
+      .onAppear { [self] in
+        if let imageName = mediaItem.imageName {
+          Task {
+            if let image = try await imageHelper.fetchImage(imageName: imageName) {
+              imageSelection.image = image
+            }
+            else {
+              print("Cannot load image: \(imageName)")
+            }
+          }
+        }
+      }
       .navigationTitle(mediaItem.name)
       .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { notification in
-        audioPlayerHelper.handleAVAudioSessionInterruption(notification)
+        mediaPlayerHelper.handleAVAudioSessionInterruption(notification)
       }
     .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemPlaybackStalled)) { _ in
       player.pause()
