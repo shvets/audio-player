@@ -17,8 +17,51 @@ public struct AudioPlayerView: View {
   }
 
   public var body: some View {
-    AudioPlayerBody(player: player, navigator: navigator, mediaItem: mediaItem, playImmediately: playImmediately)
-    .navigationTitle(mediaItem.name)
+    VStack {
+      if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
+        DetailsImage(url: url)
+          .padding(5)
+      }
+
+      Text(navigator.selection.currentItem?.name ?? "")
+        .fixedSize()
+
+      VStack {
+        VolumeSlider(player: player)
+
+        HStack {
+          Text("\(audioPlayerHelper.formatTime(audioPlayerHelper.currentTime))")
+
+          Spacer()
+
+          Text("\(audioPlayerHelper.formatTime(audioPlayerHelper.leftTime))")
+        }
+      }
+        .padding(5)
+        .frame(height: 30)
+
+      Spacer()
+
+      VolumeControlsView()
+        .padding(5)
+        .frame(height: 50)
+
+      Spacer()
+
+      Group {
+        PrimaryControlsView(player: player, navigator: navigator)
+        SecondaryControlsView(player: player)
+      }
+        .commandCenter(player: player, navigator: navigator, stopOnLeave: false, playImmediately: playImmediately)
+        .padding(5)
+        .frame(height: 50)
+
+      Spacer()
+    }
+      .navigationTitle(mediaItem.name)
+      .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { notification in
+        audioPlayerHelper.handleAVAudioSessionInterruption(notification)
+      }
     .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemPlaybackStalled)) { _ in
       player.pause()
       player.play()
