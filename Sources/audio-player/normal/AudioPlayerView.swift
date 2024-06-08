@@ -17,28 +17,11 @@ public struct AudioPlayerView: View {
   }
 
   public var body: some View {
-    GeometryReader { proxy in
-      VStack {
-        AudioPlayerBody(player: player, navigator: navigator, mediaItem: mediaItem, playImmediately: playImmediately)
-      }
-        .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-        //.background(Color.gray)
-        .navigationTitle(mediaItem.name)
-        .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemPlaybackStalled)) { _ in
-          player.pause()
-          player.play()
-        }
+    AudioPlayerBody(player: player, navigator: navigator, mediaItem: mediaItem, playImmediately: playImmediately)
+    .navigationTitle(mediaItem.name)
+    .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemPlaybackStalled)) { _ in
+      player.pause()
+      player.play()
     }
   }
 }
-
-//struct AudioPlayerView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    AudioPlayerView(
-//        player: MediaPlayer(),
-//        mediaItem: MediaItem(name: "name"),
-//        playImmediately: false,
-//        startTime: .zero
-//    )
-//  }
-//}
