@@ -1,4 +1,5 @@
 import SwiftUI
+import AVKit
 import media_player
 import common_defs
 import item_navigator
