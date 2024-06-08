@@ -4,6 +4,10 @@ import common_defs
 import item_navigator
 
 public struct AudioPlayerView: View {
+  private var audioPlayerHelper: MediaPlayerHelper {
+    MediaPlayerHelper(player: player)
+  }
+
   @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
