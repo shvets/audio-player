@@ -38,6 +38,17 @@ public struct CompactAudioPlayerView: View {
     self.urlBuilder = urlBuilder
     self.navigateTo = navigateTo
     self.closeView = closeView
+
+    Task { [self] in
+      if let imageName = mediaItem.imageName {
+        if let image = try await imageHelper.fetchImage(imageName: imageName) {
+          imageSelection.image = image
+        }
+        else {
+          print("Cannot load image: \(imageName)")
+        }
+      }
+    }
   }
 
   public var body: some View {
@@ -78,31 +89,14 @@ public struct CompactAudioPlayerView: View {
         }
           .padding(5)
 
-        if let imageName = mediaItem.imageName, let url = URL(string: imageName) {
-          HStack {
-//            DetailsImage(url: url)
-//              .frame(width: 130, height: 130)
-            
-            if let image = imageSelection.image {
+          if let image = imageSelection.image {
+            HStack {
               ImageView(image: image, customizeImage: imageHelper.customizeImage)
                 .frame(width: 130, height: 130)
             }
 
             Spacer()
           }
-        }
-      }
-    }
-    .onAppear { [self] in
-      if let imageName = mediaItem.imageName {
-        Task {
-          if let image = try await imageHelper.fetchImage(imageName: imageName) {
-            imageSelection.image = image
-          }
-          else {
-            print("Cannot load image: \(imageName)")
-          }
-        }
       }
     }
       .navigationTitle(mediaItem.name)
