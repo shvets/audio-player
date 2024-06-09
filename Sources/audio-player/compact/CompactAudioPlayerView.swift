@@ -89,8 +89,8 @@ public struct CompactAudioPlayerView: View {
         }
           .padding(5)
 
-          if let image = imageSelection.image {
-            HStack {
+          HStack {
+            if let image = imageSelection.image {
               ImageView(image: image, customizeImage: imageHelper.customizeImage)
                 .frame(width: 130, height: 130)
             }
