@@ -22,7 +22,6 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
       .package(url: "https://github.com/shvets/media-player", from: "1.2.2"),
       .package(url: "https://github.com/shvets/item-navigator", from: "1.0.1"),
-      .package(url: "https://github.com/shvets/navigation", from: "1.0.2"),
       .package(url: "https://github.com/shvets/common-defs", from: "1.0.5")
     ],
     targets: [
@@ -33,7 +32,6 @@ let package = Package(
             dependencies: [
               "media-player",
               "item-navigator",
-              "navigation",
               "common-defs"
             ]),
         .testTarget(
