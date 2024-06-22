@@ -22,20 +22,20 @@ public struct CompactAudioPlayerView: View {
   @Binding var currentTime: Double
   var playImmediately: Bool
   var urlBuilder: (MediaItem) -> URL?
-  var navigateTo: () -> AnyView
-  var closeView: () -> AnyView
+  var navigateAction: () -> any View
+  var closeAction: () -> any View
 
   public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem,
               currentTime: Binding<Double>, playImmediately: Bool, urlBuilder: @escaping (MediaItem) -> URL?,
-              navigateTo: @escaping () -> AnyView, closeView: @escaping () -> AnyView) {
+              navigateAction: @escaping () -> any View, closeAction: @escaping () -> any View) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
     self._currentTime = currentTime
     self.playImmediately = playImmediately
     self.urlBuilder = urlBuilder
-    self.navigateTo = navigateTo
-    self.closeView = closeView
+    self.navigateAction = navigateAction
+    self.closeAction = closeAction
 
     Task { [self] in
       if let imageName = mediaItem.imageName {
@@ -53,9 +53,9 @@ public struct CompactAudioPlayerView: View {
     VStack {
       if expanded {
         HStack {
-          switchModeView()
-          closeView()
-          navigateTo()
+          AnyView(switchModeView())
+          AnyView(closeAction())
+          AnyView(navigateAction())
           Spacer()
         }
 
@@ -75,9 +75,9 @@ public struct CompactAudioPlayerView: View {
       }
       else {
         HStack {
-          switchModeView()
-          closeView()
-          navigateTo()
+          AnyView(switchModeView())
+          AnyView(closeAction())
+          AnyView(navigateAction())
 
           Spacer()
 
@@ -100,9 +100,9 @@ public struct CompactAudioPlayerView: View {
       .navigationTitle(mediaItem.name)
   }
 
-  var switchModeView: () -> AnyView {
+  var switchModeView: () -> any View {
     {
-      AnyView(Button {
+      Button {
         switchMode()
       } label: {
         if expanded {
@@ -111,12 +111,12 @@ public struct CompactAudioPlayerView: View {
         else {
           Image(systemName: "lightswitch.on")
         }
-      })
+      }
     }
   }
 
   func switchMode() {
-    if let url = urlBuilder(mediaItem)  {
+    if let mediaItem = navigator.selection.currentItem, let url = urlBuilder(mediaItem)  {
       if player.url?.absoluteString != url.absoluteString {
         player.update(url: url, startTime: currentTime)
       }
