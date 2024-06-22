@@ -13,12 +13,11 @@ public struct CompactAudioPlayerView: View {
   private var imageHelper = ImageHelper()
 
   @ObservedObject var imageSelection = ImageSelection()
-  
+
   @State var expanded: Bool = false
 
   var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
-  @ObservedObject var selection: Selection<MediaItem>
   var mediaItem: MediaItem
   @Binding var currentTime: Double
   var playImmediately: Bool
@@ -26,13 +25,11 @@ public struct CompactAudioPlayerView: View {
   var navigateTo: () -> AnyView
   var closeView: () -> AnyView
 
-  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, selection: Selection<MediaItem>,
-              mediaItem: MediaItem, currentTime: Binding<Double>, playImmediately: Bool,
-              urlBuilder: @escaping (MediaItem) -> URL?,
+  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem,
+              currentTime: Binding<Double>, playImmediately: Bool, urlBuilder: @escaping (MediaItem) -> URL?,
               navigateTo: @escaping () -> AnyView, closeView: @escaping () -> AnyView) {
     self.player = player
     self.navigator = navigator
-    self.selection = selection
     self.mediaItem = mediaItem
     self._currentTime = currentTime
     self.playImmediately = playImmediately
@@ -119,7 +116,7 @@ public struct CompactAudioPlayerView: View {
   }
 
   func switchMode() {
-    if let mediaItem = selection.currentItem, let url = urlBuilder(mediaItem)  {
+    if let url = urlBuilder(mediaItem)  {
       if player.url?.absoluteString != url.absoluteString {
         player.update(url: url, startTime: currentTime)
       }
