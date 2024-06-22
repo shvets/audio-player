@@ -3,6 +3,7 @@ import AVFoundation
 import media_player
 import common_defs
 import item_navigator
+import plain_image_view
 
 public struct CompactAudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
