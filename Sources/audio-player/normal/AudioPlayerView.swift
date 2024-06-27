@@ -12,9 +12,9 @@ public struct AudioPlayerView: View {
   
   private var imageHelper = ImageHelper()
 
-  @ObservedObject var imageSelection = ImageSelection()
+  @StateObject var imageSelection = ImageSelection()
 
-  @ObservedObject var player: MediaPlayer
+  var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
   var playImmediately: Bool
@@ -68,7 +68,7 @@ public struct AudioPlayerView: View {
 
       Spacer()
     }
-      .onAppear { [self] in
+      .task {
         if let imageName = mediaItem.imageName {
           Task {
             if let image = try await imageHelper.fetchImage(imageName: imageName) {
