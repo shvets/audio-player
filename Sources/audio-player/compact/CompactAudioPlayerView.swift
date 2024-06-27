@@ -14,26 +14,22 @@ public struct CompactAudioPlayerView: View {
 
   @ObservedObject var imageSelection = ImageSelection()
 
-  @State var expanded: Bool = false
-
-  var player: MediaPlayer
+  @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
   @Binding var currentTime: Double
-  var playImmediately: Bool
-  var urlBuilder: (MediaItem) -> URL?
+  @Binding var expanded: Bool
   var navigateAction: () -> any View
   var closeAction: () -> any View
 
   public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem,
-              currentTime: Binding<Double>, playImmediately: Bool, urlBuilder: @escaping (MediaItem) -> URL?,
+              currentTime: Binding<Double>, expanded: Binding<Bool>,
               navigateAction: @escaping () -> any View, closeAction: @escaping () -> any View) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
+    self._expanded = expanded
     self._currentTime = currentTime
-    self.playImmediately = playImmediately
-    self.urlBuilder = urlBuilder
     self.navigateAction = navigateAction
     self.closeAction = closeAction
 
@@ -57,6 +53,10 @@ public struct CompactAudioPlayerView: View {
           AnyView(closeAction())
           AnyView(navigateAction())
           Spacer()
+
+          Text(mediaItem.name)
+            .scaledToFit()
+            .minimumScaleFactor(0.01)
         }
 
         HStack {
@@ -116,12 +116,6 @@ public struct CompactAudioPlayerView: View {
   }
 
   func switchMode() {
-    if let mediaItem = navigator.selection.currentItem, let url = urlBuilder(mediaItem)  {
-      if player.url?.absoluteString != url.absoluteString {
-        player.update(url: url, startTime: currentTime)
-      }
-    }
-
     expanded = !expanded
   }
 }
