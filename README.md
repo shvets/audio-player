@@ -4,6 +4,6 @@ Audio Player
 # Publishing
 
 ```bash
-git tag 2.0.5
+git tag 2.0.6
 git push --tags
 ```

@@ -30,6 +30,9 @@ public struct AudioPlayerView: View {
     VStack {
       if let image = imageSelection.image {
         ImageView(image: image, customizeImage: imageHelper.customizeImage)
+          #if os(tvOS)
+          .frame(width: 500, height: 500)
+          #endif
           .padding(5)
       }
 
