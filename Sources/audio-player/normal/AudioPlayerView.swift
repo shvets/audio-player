@@ -14,7 +14,7 @@ public struct AudioPlayerView: View {
 
   @StateObject var imageSelection = ImageSelection()
 
-  var player: MediaPlayer
+  @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
   var playImmediately: Bool
