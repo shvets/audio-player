@@ -15,7 +15,8 @@ struct PrimaryControlsView: View {
       if navigator.selection.items.count > 1 {
         Button(action: {
           if let item = navigator.previous() {
-            navigator.update(item: item, time: .zero)
+            navigator.selectItem(item)
+            navigator.update(item: item)
           }
         }, label: {
           Image("Rewind Filled")
@@ -50,7 +51,8 @@ struct PrimaryControlsView: View {
       if navigator.selection.items.count > 1 {
         Button(action: {
           if let item = navigator.next() {
-            navigator.update(item: item, time: .zero)
+            navigator.selectItem(item)
+            navigator.update(item: item)
           }
         }, label: {
           Image("Fast Forward Filled")
