@@ -10,7 +10,7 @@ public struct AudioPlayerView: View {
     MediaPlayerHelper(player: player)
   }
   
-  private var imageHelper = ImageHelper()
+  private var imageFetcher = ImageFetcher()
 
   @StateObject var imageSelection = ImageSelection()
 
@@ -29,7 +29,7 @@ public struct AudioPlayerView: View {
   public var body: some View {
     VStack {
       if let image = imageSelection.image {
-        ImageView(image: image, customizeImage: imageHelper.customizeImage)
+        ImageView(image: image)
           #if os(tvOS)
           .frame(width: 500, height: 500)
           #endif
@@ -74,7 +74,7 @@ public struct AudioPlayerView: View {
       .task {
         if let imageName = mediaItem.imageName {
           Task {
-            if let image = try await imageHelper.fetchImage(imageName: imageName) {
+            if let image = try await imageFetcher.fetch(imageName: imageName) {
               imageSelection.image = image
             }
             else {

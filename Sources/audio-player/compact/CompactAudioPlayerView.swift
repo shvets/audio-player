@@ -10,7 +10,7 @@ public struct CompactAudioPlayerView: View {
     MediaPlayerHelper(player: player)
   }
   
-  private var imageHelper = ImageHelper()
+  private var imageFetcher = ImageFetcher()
 
   @ObservedObject var imageSelection = ImageSelection()
 
@@ -35,7 +35,7 @@ public struct CompactAudioPlayerView: View {
 
     Task { [self] in
       if let imageName = mediaItem.imageName {
-        if let image = try await imageHelper.fetchImage(imageName: imageName) {
+        if let image = try await imageFetcher.fetch(imageName: imageName) {
           imageSelection.image = image
         }
         else {
@@ -89,7 +89,7 @@ public struct CompactAudioPlayerView: View {
 
           HStack {
             if let image = imageSelection.image {
-              ImageView(image: image, customizeImage: imageHelper.customizeImage)
+              ImageView(image: image)
                 .frame(width: 130, height: 130)
             }
 

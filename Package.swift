@@ -23,7 +23,7 @@ let package = Package(
       .package(url: "https://github.com/shvets/media-player", from: "2.0.1"),
       .package(url: "https://github.com/shvets/item-navigator", from: "1.0.7"),
       .package(url: "https://github.com/shvets/common-defs", from: "1.0.7"),
-      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.0")
+      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.2")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
