@@ -9,40 +9,27 @@ public struct CompactAudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
   }
-  
-  private var imageFetcher = ImageFetcher()
-
-  @ObservedObject var imageSelection = ImageSelection()
 
   @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
+  @Binding var image: UIImage?
   @Binding var currentTime: Double
   @Binding var expanded: Bool
   var navigateAction: () -> any View
   var closeAction: () -> any View
 
   public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem,
-              currentTime: Binding<Double>, expanded: Binding<Bool>,
+              image: Binding<UIImage?>, currentTime: Binding<Double>, expanded: Binding<Bool>,
               navigateAction: @escaping () -> any View, closeAction: @escaping () -> any View) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
+    self._image = image
     self._expanded = expanded
     self._currentTime = currentTime
     self.navigateAction = navigateAction
     self.closeAction = closeAction
-
-    Task { [self] in
-      if let imageName = mediaItem.imageName {
-        if let image = try await imageFetcher.fetch(imageName: imageName) {
-          imageSelection.image = image
-        }
-        else {
-          print("Cannot load image: \(imageName)")
-        }
-      }
-    }
   }
 
   public var body: some View {
@@ -87,14 +74,12 @@ public struct CompactAudioPlayerView: View {
         }
           .padding(5)
 
-          HStack {
-            if let image = imageSelection.image {
-              ImageView(image: image)
-                .frame(width: 130, height: 130)
-            }
+        HStack {
+          ImageView(image: image)
+            .frame(width: 130, height: 130)
 
-            Spacer()
-          }
+          Spacer()
+        }
       }
     }
       .navigationTitle(mediaItem.name)

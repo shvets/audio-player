@@ -10,31 +10,28 @@ public struct AudioPlayerView: View {
     MediaPlayerHelper(player: player)
   }
   
-  private var imageFetcher = ImageFetcher()
-
-  @StateObject var imageSelection = ImageSelection()
-
   @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
+  @Binding var image: UIImage?
   var playImmediately: Bool
 
-  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem, playImmediately: Bool) {
+  public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem, image: Binding<UIImage?>,
+    playImmediately: Bool) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
+    self._image = image
     self.playImmediately = playImmediately
   }
 
   public var body: some View {
     VStack {
-      if let image = imageSelection.image {
-        ImageView(image: image)
-          #if os(tvOS)
-          .frame(width: 500, height: 500)
-          #endif
-          .padding(5)
-      }
+      ImageView(image: image)
+        #if os(tvOS)
+        .frame(width: 500, height: 500)
+        #endif
+        .padding(5)
 
       Text(navigator.selection.currentItem?.name ?? "")
         .fixedSize()
@@ -71,18 +68,6 @@ public struct AudioPlayerView: View {
 
       Spacer()
     }
-      .task {
-        if let imageName = mediaItem.imageName {
-          Task {
-            if let image = try await imageFetcher.fetch(imageName: imageName) {
-              imageSelection.image = image
-            }
-            else {
-              print("Cannot load image: \(imageName)")
-            }
-          }
-        }
-      }
       .navigationTitle(mediaItem.name)
       .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { notification in
         mediaPlayerHelper.handleAVAudioSessionInterruption(notification)
