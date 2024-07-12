@@ -23,7 +23,8 @@ let package = Package(
       .package(url: "https://github.com/shvets/media-player", from: "2.0.1"),
       .package(url: "https://github.com/shvets/item-navigator", from: "1.0.7"),
       .package(url: "https://github.com/shvets/common-defs", from: "1.0.7"),
-      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.2")
+      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.2"),
+      .package(url: "https://github.com/shvets/swift-ui-commons", from: "1.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,7 +35,8 @@ let package = Package(
               "media-player",
               "item-navigator",
               "common-defs",
-              "plain-image-view"
+              "plain-image-view",
+              "swift-ui-commons"
             ]),
         .testTarget(
             name: "audio-playerTests",

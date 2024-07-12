@@ -4,6 +4,7 @@ import media_player
 import common_defs
 import item_navigator
 import plain_image_view
+import swift_ui_commons
 
 public struct CompactAudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
@@ -15,18 +16,18 @@ public struct CompactAudioPlayerView: View {
   var mediaItem: MediaItem
   @Binding var image: UIImage?
   @Binding var currentTime: Double
-  @Binding var expanded: Bool
+  @ObservedObject var expanded: SimpleSelection<Bool>
   var navigateAction: () -> any View
   var closeAction: () -> any View
 
   public init(player: MediaPlayer, navigator: ItemNavigator<MediaItem>, mediaItem: MediaItem,
-              image: Binding<UIImage?>, currentTime: Binding<Double>, expanded: Binding<Bool>,
+              image: Binding<UIImage?>, currentTime: Binding<Double>, expanded: SimpleSelection<Bool>,
               navigateAction: @escaping () -> any View, closeAction: @escaping () -> any View) {
     self.player = player
     self.navigator = navigator
     self.mediaItem = mediaItem
     self._image = image
-    self._expanded = expanded
+    self.expanded = expanded
     self._currentTime = currentTime
     self.navigateAction = navigateAction
     self.closeAction = closeAction
@@ -34,7 +35,7 @@ public struct CompactAudioPlayerView: View {
 
   public var body: some View {
     VStack {
-      if expanded {
+      if expanded.value {
         HStack {
           AnyView(switchModeView())
           AnyView(closeAction())
@@ -76,7 +77,10 @@ public struct CompactAudioPlayerView: View {
 
         HStack {
           ImageView(image: image)
-            .frame(width: 130, height: 130)
+            .frame(width: 150, height: 150)
+            .onTapGesture {
+              switchMode()
+            }
 
           Spacer()
         }
@@ -90,7 +94,7 @@ public struct CompactAudioPlayerView: View {
       Button {
         switchMode()
       } label: {
-        if expanded {
+        if expanded.value {
           Image(systemName: "lightswitch.off")
         }
         else {
@@ -101,6 +105,6 @@ public struct CompactAudioPlayerView: View {
   }
 
   func switchMode() {
-    expanded = !expanded
+    expanded.value = !expanded.value
   }
 }
