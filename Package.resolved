@@ -35,6 +35,15 @@
         "revision" : "36fb07cd0bfb592c19db2d4ace839f84b59ea733",
         "version" : "1.0.2"
       }
+    },
+    {
+      "identity" : "swift-ui-commons",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shvets/swift-ui-commons",
+      "state" : {
+        "revision" : "0d0af66ce126cb24e68d57643d274468445bbb07",
+        "version" : "1.0.0"
+      }
     }
   ],
   "version" : 2
