@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/plain-image-view",
       "state" : {
-        "revision" : "36fb07cd0bfb592c19db2d4ace839f84b59ea733",
-        "version" : "1.0.2"
+        "revision" : "26c97855db61b5dbdddcb9441dc6a68a27a7efb1",
+        "version" : "1.0.4"
       }
     },
     {
