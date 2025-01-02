@@ -1,5 +1,7 @@
 import SwiftUI
 
+#if !os(macOS)
+
 public struct VolumeControlsView: View {
   public var body: some View {
     HStack {
@@ -44,3 +46,5 @@ public struct VolumeControlsView: View {
     }
   }
 }
+
+#endif

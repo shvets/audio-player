@@ -7,7 +7,7 @@ let package = Package(
     name: "audio-player",
     defaultLocalization: "en",
     platforms: [
-//        .macOS(.v14),
+        .macOS(.v14),
         .iOS(.v17),
         .tvOS(.v17)
     ],
