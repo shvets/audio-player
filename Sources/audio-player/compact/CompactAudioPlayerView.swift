@@ -6,6 +6,8 @@ import item_navigator
 import plain_image_view
 import swift_ui_commons
 
+#if !os(macOS)
+
 public struct CompactAudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
@@ -108,3 +110,4 @@ public struct CompactAudioPlayerView: View {
     expanded.value = !expanded.value
   }
 }
+#endif

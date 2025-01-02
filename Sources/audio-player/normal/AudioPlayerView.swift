@@ -5,6 +5,8 @@ import common_defs
 import item_navigator
 import plain_image_view
 
+#if !os(macOS)
+
 public struct AudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
@@ -78,3 +80,5 @@ public struct AudioPlayerView: View {
     }
   }
 }
+
+#endif
