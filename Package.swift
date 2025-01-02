@@ -23,7 +23,7 @@ let package = Package(
       .package(url: "https://github.com/shvets/media-player", from: "2.0.3"),
       .package(url: "https://github.com/shvets/item-navigator", from: "1.0.7"),
       .package(url: "https://github.com/shvets/common-defs", from: "1.0.7"),
-      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.3"),
+      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.4"),
       .package(url: "https://github.com/shvets/swift-ui-commons", from: "1.0.0")
     ],
     targets: [
