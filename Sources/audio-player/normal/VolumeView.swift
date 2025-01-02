@@ -1,5 +1,9 @@
 import SwiftUI
+
+#if !os(macOS)
 import UIKit
+#endif
+
 import MediaPlayer
 
 struct VolumeView: UIViewRepresentable {

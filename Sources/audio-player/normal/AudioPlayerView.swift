@@ -9,7 +9,7 @@ public struct AudioPlayerView: View {
   private var mediaPlayerHelper: MediaPlayerHelper {
     MediaPlayerHelper(player: player)
   }
-  
+
   @ObservedObject var player: MediaPlayer
   var navigator: ItemNavigator<MediaItem>
   var mediaItem: MediaItem
