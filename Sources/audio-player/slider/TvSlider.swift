@@ -4,6 +4,8 @@
 
 import SwiftUI
 
+#if !os(macOS)
+
 struct TvSlider: UIViewRepresentable {
   var minimumValue: Float
   var maximumValue: Float
@@ -48,3 +50,5 @@ struct TvSlider: UIViewRepresentable {
     }
   }
 }
+
+#endif

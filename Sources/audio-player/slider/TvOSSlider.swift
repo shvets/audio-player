@@ -1,6 +1,5 @@
 #if !os(macOS)
 import UIKit
-#endif
 
 import GameController
 
@@ -517,3 +516,5 @@ public final class TvOSSlider: UIControl {
     super.pressesBegan(presses, with: event)
   }
 }
+
+#endif

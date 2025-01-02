@@ -35,7 +35,7 @@ public struct VolumeSlider: View {
 //              .stroke(lineWidth: 1.0)
 //              //.foregroundColor(Color.green)
 //        )
-      #else
+      #elseif !os(macOS)
       TvSlider(minimumValue: 1, maximumValue: 10) {
         print("in handler")
         //valueLabel.text = "\(slider.value)"
