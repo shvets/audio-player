@@ -1,10 +1,8 @@
 import SwiftUI
+import MediaPlayer
 
 #if !os(macOS)
 import UIKit
-#endif
-
-import MediaPlayer
 
 struct VolumeView: UIViewRepresentable {
   func makeUIView(context: Context) -> UIView {
@@ -23,3 +21,5 @@ struct VolumeView: UIViewRepresentable {
 #endif
   }
 }
+
+#endif
