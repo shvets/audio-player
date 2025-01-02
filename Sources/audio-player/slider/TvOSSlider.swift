@@ -1,4 +1,7 @@
+#if !os(macOS)
 import UIKit
+#endif
+
 import GameController
 
 private let trackViewHeight: CGFloat = 5
@@ -103,7 +106,7 @@ public final class TvOSSlider: UIControl {
 
   /**
      Sets the slider’s current value, allowing you to animate the change visually.
-     
+
      - Parameters:
         - value: The new value to assign to the value property
         - animated: Specify true to animate the change in value; otherwise, specify false to update the slider’s appearance immediately. Animations are performed asynchronously and do not block the calling thread.
@@ -122,7 +125,7 @@ public final class TvOSSlider: UIControl {
 
   /**
      Assigns a minimum track image to the specified control states.
-     
+
      - Parameters:
         - image: The minimum track image to associate with the specified states.
         - state: The control state with which to associate the image.
@@ -134,7 +137,7 @@ public final class TvOSSlider: UIControl {
 
   /**
      Assigns a maximum track image to the specified control states.
-     
+
      - Parameters:
         - image: The maximum track image to associate with the specified states.
         - state: The control state with which to associate the image.
@@ -146,7 +149,7 @@ public final class TvOSSlider: UIControl {
 
   /**
      Assigns a thumb image to the specified control states.
-     
+
      - Parameters:
         - image: The thumb image to associate with the specified states.
         - state: The control state with which to associate the image.
@@ -173,10 +176,10 @@ public final class TvOSSlider: UIControl {
 
   /**
      Returns the minimum track image associated with the specified control state.
-     
+
      - Parameters:
         - state: The control state whose minimum track image you want to use. Specify a single control state value for this parameter.
-     
+
     - Returns: The minimum track image associated with the specified state, or nil if no image has been set. This method might also return nil if you specify multiple control states in the state parameter. For a description of track images, see Customizing the Slider’s Appearance.
      */
   public func minimumTrackImage(for state: UIControl.State) -> UIImage? {
@@ -185,10 +188,10 @@ public final class TvOSSlider: UIControl {
 
   /**
      Returns the maximum track image associated with the specified control state.
-     
+
      - Parameters:
         - state: The control state whose maximum track image you want to use. Specify a single control state value for this parameter.
-     
+
      - Returns: The maximum track image associated with the specified state, or nil if an appropriate image could not be retrieved. This method might return nil if you specify multiple control states in the state parameter. For a description of track images, see Customizing the Slider’s Appearance.
      */
   public func maximumTrackImage(for state: UIControl.State) -> UIImage? {
@@ -197,10 +200,10 @@ public final class TvOSSlider: UIControl {
 
   /**
      Returns the thumb image associated with the specified control state.
-     
+
      - Parameters:
         - state: The control state whose thumb image you want to use. Specify a single control state value for this parameter.
-     
+
      - Returns: The thumb image associated with the specified state, or nil if an appropriate image could not be retrieved. This method might return nil if you specify multiple control states in the state parameter. For a description of track and thumb images, see Customizing the Slider’s Appearance.
      */
   public func thumbImage(for state: UIControl.State) -> UIImage? {
