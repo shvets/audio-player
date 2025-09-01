@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,10 +20,10 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-      .package(url: "https://github.com/shvets/media-player", from: "2.0.3"),
-      .package(url: "https://github.com/shvets/item-navigator", from: "1.0.7"),
-      .package(url: "https://github.com/shvets/common-defs", from: "1.0.7"),
-      .package(url: "https://github.com/shvets/plain-image-view", from: "1.0.4"),
+      .package(url: "https://github.com/shvets/media-player", from: "2.1.0"),
+      .package(url: "https://github.com/shvets/item-navigator", from: "1.1.0"),
+      .package(url: "https://github.com/shvets/common-defs", from: "1.0.8"),
+      .package(url: "https://github.com/shvets/plain-image-view", from: "1.1.0"),
       .package(url: "https://github.com/shvets/swift-ui-commons", from: "1.0.0")
     ],
     targets: [

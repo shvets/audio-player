@@ -1,12 +1,13 @@
 {
+  "originHash" : "fec32f55c7d6c064888f2a260852d8b8bdc5a5e0e9ac9bb62e8fc1e4e1a176dc",
   "pins" : [
     {
       "identity" : "common-defs",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/common-defs",
       "state" : {
-        "revision" : "6478bad042bc547945b1eb5ebb1676dfff25bd3f",
-        "version" : "1.0.7"
+        "revision" : "89538595e5f0bee877f2147f875a96bdd770e2d1",
+        "version" : "1.0.8"
       }
     },
     {
@@ -14,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/item-navigator",
       "state" : {
-        "revision" : "ebbc5812c6c6f1b2bf0e9bd8e724dc0043d76163",
-        "version" : "1.0.7"
+        "revision" : "6c25e8e56ba8e498af7764a7e9da1c66e9e714b8",
+        "version" : "1.1.0"
       }
     },
     {
@@ -23,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/media-player",
       "state" : {
-        "revision" : "ca61ffdb76068f3012c00e92f565f2c0703b8440",
-        "version" : "2.0.3"
+        "revision" : "6fbda580c05f2de471116b3047131f9c702dd62a",
+        "version" : "2.1.0"
       }
     },
     {
@@ -32,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/plain-image-view",
       "state" : {
-        "revision" : "26c97855db61b5dbdddcb9441dc6a68a27a7efb1",
-        "version" : "1.0.4"
+        "revision" : "28470bba66eb0f9136e928f77a05336a5f543527",
+        "version" : "1.1.0"
       }
     },
     {
@@ -46,5 +47,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
